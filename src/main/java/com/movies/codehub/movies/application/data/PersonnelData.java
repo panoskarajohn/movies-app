@@ -1,12 +1,15 @@
 package com.movies.codehub.movies.application.data;
 
+import lombok.Data;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity()
 @Table(name = "Personnel")
-public class Personnel {
+@Data
+public class PersonnelData {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
@@ -14,5 +17,5 @@ public class Personnel {
     private int age;
     private String type;
     @ManyToMany(mappedBy = "personnelInMovie")
-    private List<Movie> movies = new ArrayList<>();
+    private List<MovieData> movies = new ArrayList<>();
 }
