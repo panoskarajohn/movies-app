@@ -2,6 +2,7 @@ package com.movies.codehub.movies.application.services;
 
 import com.movies.codehub.movies.application.domain.Movie;
 import com.movies.codehub.movies.application.domain.Personnel;
+import com.movies.codehub.movies.application.extensions.DataToDomain;
 import com.movies.codehub.movies.application.extensions.DomainToData;
 import com.movies.codehub.movies.application.repository.MovieRepository;
 import lombok.RequiredArgsConstructor;
@@ -16,8 +17,11 @@ public class MovieServiceImpl implements MovieService{
     private final MovieRepository movieRepository;
 
     @Override
-    public List<Movie> GetMovie(Long movieId) {
-        return null;
+    public Movie GetMovie(Long movieId) {
+        var movieData = movieRepository
+                .findById(movieId).orElseThrow(); // is this acceptable on the service layer?
+        var movie = DataToDomain.getMovieWithPersonnelDomain(movieData);
+        return movie;
     }
 
     @Override

@@ -40,4 +40,25 @@ public class DataToDomain {
                 .personnelType(PersonnelType.valueOf(personnelData.getType()))
                 .build();
    }
+
+   public static Personnel getPersonnelWithAllMovies(PersonnelData personnel)
+   {
+       var personnelDomain = getPersonnelDomain(personnel);
+       var movies = new ArrayList<Movie>();
+       for (var movieData :
+               personnel.getMovies()) {
+           movies.add(getMovieDomain(movieData));
+       }
+       personnelDomain.setMovies(movies);
+       return personnelDomain;
+   }
+
+   public static Movie getMovieDomain(MovieData movieData)
+   {
+       return Movie.builder()
+               .id(movieData.getId())
+               .category(movieData.getCategory())
+               .title(movieData.getTitle())
+               .build();
+   }
 }

@@ -2,6 +2,7 @@ package com.movies.codehub.movies.application.services;
 
 import com.movies.codehub.movies.application.data.PersonnelData;
 import com.movies.codehub.movies.application.domain.Personnel;
+import com.movies.codehub.movies.application.extensions.DataToDomain;
 import com.movies.codehub.movies.application.extensions.DomainToData;
 import com.movies.codehub.movies.application.repository.PersonnelRepository;
 import lombok.RequiredArgsConstructor;
@@ -14,6 +15,13 @@ import java.util.List;
 @RequiredArgsConstructor
 public class PersonnelServiceImple implements PersonnelService{
     private final PersonnelRepository personnelRepository;
+
+    @Override
+    public Personnel GetPersonnel(long id) {
+        var personnelData = personnelRepository.findById(id).orElseThrow();
+        return DataToDomain.getPersonnelWithAllMovies(personnelData);
+    }
+
     @Override
     public void RegisterPersonnel(List<Personnel> personnels) {
         var personnelData = new ArrayList<PersonnelData>();

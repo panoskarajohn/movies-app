@@ -6,7 +6,7 @@ import com.movies.codehub.movies.application.domain.Personnel;
 import java.util.List;
 
 public interface MovieService {
-    public List<Movie> GetMovie(Long movieId);
+    public Movie GetMovie(Long movieId);
     public List<Personnel> GetActors(Long movieId);
     public List<Personnel> GetActorMovies(Long personnelId);
     public void RegisterMovies(List<Movie> movies);

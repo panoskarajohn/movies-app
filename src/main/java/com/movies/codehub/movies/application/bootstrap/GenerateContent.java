@@ -24,14 +24,15 @@ public class GenerateContent implements CommandLineRunner {
     public void run(String... args) {
         generateMoviesWithCast();
     }
-
+    Personnel harrisonFord = Personnel.builder().id(1L).name("Harrison Ford").age(79).personnelType(PersonnelType.ACTOR).build();
     private void generateMoviesWithCast() {
         List<Personnel> bladeRunnerPersonnel = List.of(
-                Personnel.builder().id(1L).name("Harrison Ford").age(79).personnelType(PersonnelType.ACTOR).build(),
+                harrisonFord,
                 Personnel.builder().id(2L).name("Ridley Scott").age(83).personnelType(PersonnelType.DIRECTOR).build()
         );
 
         List<Personnel> starWarsPersonnel = List.of(
+                harrisonFord,
                 Personnel.builder().id(3L).name("Mark Hammil").age(70).personnelType(PersonnelType.ACTOR).build(),
                 Personnel.builder().id(4L).name("George Lucas").age(77).personnelType(PersonnelType.DIRECTOR).build()
         );

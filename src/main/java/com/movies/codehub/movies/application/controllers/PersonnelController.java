@@ -1,7 +1,7 @@
 package com.movies.codehub.movies.application.controllers;
 
-import com.movies.codehub.movies.application.domain.Movie;
-import com.movies.codehub.movies.application.services.MovieService;
+import com.movies.codehub.movies.application.domain.Personnel;
+import com.movies.codehub.movies.application.services.PersonnelService;
 import com.movies.codehub.movies.application.transfer.ApiResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -11,17 +11,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/movies")
+@RequestMapping("/cast")
 @RequiredArgsConstructor
-public class MoviesController {
-
-    private final MovieService movieService;
-
+public class PersonnelController {
+    private final PersonnelService personnelService;
 
     @GetMapping("/{id}")
-    public ResponseEntity<ApiResponse<Movie>> GetMovie(@PathVariable("id") long id)
+    public ResponseEntity<ApiResponse<Personnel>> GetPersonnel(@PathVariable("id") long id)
     {
-        var movie = movieService.GetMovie(id);
-        return ResponseEntity.ok(ApiResponse.<Movie>builder().data(movie).build());
+        var personnel = personnelService.GetPersonnel(id);
+        return ResponseEntity.ok(ApiResponse.<Personnel>builder().data(personnel).build());
     }
 }
