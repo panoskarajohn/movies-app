@@ -4,14 +4,15 @@ import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
-@Entity(name = "Actor")
-@Table(name = "actor")
-public class Actor {
+@Entity()
+@Table(name = "Personnel")
+public class Personnel {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String name;
     private int age;
-    @ManyToMany(mappedBy = "actors")
+    private String type;
+    @ManyToMany(mappedBy = "personnelInMovie")
     private List<Movie> movies = new ArrayList<>();
 }

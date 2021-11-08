@@ -9,7 +9,8 @@ import lombok.experimental.SuperBuilder;
 @SuperBuilder
 @ToString(callSuper = true)
 @EqualsAndHashCode(callSuper = true)
-public class Actor extends BaseEntity{
+public class Personnel extends BaseEntity{
     private String name;
     private int age;
+    private PersonnelType personnelType;
 }

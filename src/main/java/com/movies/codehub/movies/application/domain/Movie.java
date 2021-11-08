@@ -15,5 +15,5 @@ import java.util.List;
 public class Movie extends BaseEntity {
     private String title;
     private String category;
-    private List<Actor> actors;
+    private List<Personnel> personnel;
 }
