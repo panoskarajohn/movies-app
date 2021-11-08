@@ -37,8 +37,6 @@ public class GenerateContent implements CommandLineRunner {
                 Personnel.builder().id(4L).name("George Lucas").age(77).personnelType(PersonnelType.DIRECTOR).build()
         );
 
-
-
         personnelService.RegisterPersonnel(bladeRunnerPersonnel);
         personnelService.RegisterPersonnel(starWarsPersonnel);
 
