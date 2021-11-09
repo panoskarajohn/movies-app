@@ -10,4 +10,8 @@ public interface MovieService {
     public List<Personnel> GetActors(Long movieId);
     public List<Personnel> GetActorMovies(Long personnelId);
     public void RegisterMovies(List<Movie> movies);
+    public long RegisterMovie(Movie movie);
+    public long UpdateMovie(Movie movie);
+    public void DeleteMovie(long id);
+    public long AttachCastToMovie(long id, List<Long> personnelIds);
 }

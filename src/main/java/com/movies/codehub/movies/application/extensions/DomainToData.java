@@ -11,6 +11,14 @@ import java.util.List;
 
 public class DomainToData {
 
+    public static MovieData movieFromDomain(Movie movie)
+    {
+        var movieData = new MovieData();
+        movieData.setCategory(movie.getCategory());
+        movieData.setTitle(movie.getTitle());
+        return movieData;
+    }
+
     public static List<MovieData> moviesWithPersonnelData(List<Movie> movies)
     {
         val movieDataList = new ArrayList<MovieData>();

@@ -12,14 +12,19 @@ import java.util.List;
 @Data
 public class MovieData {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;
     String title;
     String category;
-    @ManyToMany(fetch = FetchType.EAGER)
+    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.DETACH)
     @JoinTable(name = "movie_personnel",
             joinColumns = @JoinColumn(name="movie_id"),
             inverseJoinColumns = @JoinColumn(name = "personnel_id")
     )
     List<PersonnelData> personnelInMovie = new ArrayList<>();
+
+    public void AppendPersonnel(PersonnelData personnelData)
+    {
+        personnelInMovie.add(personnelData);
+    }
 }

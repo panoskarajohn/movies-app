@@ -37,12 +37,12 @@ public class GenerateContent implements CommandLineRunner {
                 Personnel.builder().id(4L).name("George Lucas").age(77).personnelType(PersonnelType.DIRECTOR).build()
         );
 
-        personnelService.RegisterPersonnel(bladeRunnerPersonnel);
-        personnelService.RegisterPersonnel(starWarsPersonnel);
+        personnelService.RegisterPersonnels(bladeRunnerPersonnel);
+        personnelService.RegisterPersonnels(starWarsPersonnel);
 
         List<Movie> movies = List.of(
-                Movie.builder().id(1L).title("Blade Runner").category("ScienceFiction").personnel(bladeRunnerPersonnel).build(),
-                Movie.builder().id(2L).title("Star Wars").category("ScienceFiction").personnel(starWarsPersonnel).build()
+                Movie.builder().id(10L).title("Blade Runner").category("ScienceFiction").personnel(bladeRunnerPersonnel).build(),
+                Movie.builder().id(20L).title("Star Wars").category("ScienceFiction").personnel(starWarsPersonnel).build()
         );
 
         movieService.RegisterMovies(movies);

@@ -12,6 +12,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class DataToDomain {
+
+
    public static Movie getMovieWithPersonnelDomain(MovieData movieData)
    {
        return Movie.builder()

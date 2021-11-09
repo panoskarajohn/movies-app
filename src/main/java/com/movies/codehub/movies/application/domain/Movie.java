@@ -6,6 +6,7 @@ import lombok.ToString;
 import lombok.experimental.SuperBuilder;
 
 import javax.persistence.Entity;
+import java.util.ArrayList;
 import java.util.List;
 
 @Data
@@ -15,5 +16,10 @@ import java.util.List;
 public class Movie extends BaseEntity {
     private String title;
     private String category;
-    private List<Personnel> personnel;
+    private List<Personnel> personnel = new ArrayList<>();
+
+    public void AppendPersonnel(Personnel personnel)
+    {
+        this.personnel.add(personnel);
+    }
 }
