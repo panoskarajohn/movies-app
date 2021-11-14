@@ -7,8 +7,6 @@ import java.util.List;
 
 public interface MovieService {
     public Movie GetMovie(Long movieId);
-    public List<Personnel> GetActors(Long movieId);
-    public List<Personnel> GetActorMovies(Long personnelId);
     public void RegisterMovies(List<Movie> movies);
     public long RegisterMovie(Movie movie);
     public long UpdateMovie(Movie movie);

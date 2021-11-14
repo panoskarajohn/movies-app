@@ -18,12 +18,13 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor
-public class MovieServiceImpl implements MovieService{
+public class MovieServiceImpl extends AbstractLogComponent implements MovieService {
     private final MovieRepository movieRepository;
     private final PersonnelRepository personnelRepository;
 
     @Override
     public Movie GetMovie(Long movieId) {
+        logger.info("Find movie with id:{}", movieId);
         var movieData = movieRepository
                 .findById(movieId).orElseThrow(); // is this acceptable on the service layer?
         var movie = DataToDomain.getMovieWithPersonnelDomain(movieData);
@@ -31,23 +32,15 @@ public class MovieServiceImpl implements MovieService{
     }
 
     @Override
-    public List<Personnel> GetActors(Long movieId) {
-        return null;
-    }
-
-    @Override
-    public List<Personnel> GetActorMovies(Long personnelId) {
-        return null;
-    }
-
-    @Override
     public void RegisterMovies(List<Movie> movies) {
+        logger.info("Register movies...");
         var movieData = DomainToData.moviesWithPersonnelData(movies);
         movieRepository.saveAll(movieData);
     }
 
     @Override
     public long RegisterMovie(Movie movie) {
+        logger.info("Register movie...");
         var movieData = DomainToData.movieFromDomain(movie);
         var savedEntity = movieRepository.save(movieData);
         return savedEntity.getId();
@@ -55,6 +48,7 @@ public class MovieServiceImpl implements MovieService{
 
     @Override
     public long UpdateMovie(Movie movie) {
+        logger.info("Update movie with id:{}", movie.getId());
         var movieData = DomainToData.movieFromDomain(movie);
         var movieDbData = movieRepository.findById(movie.getId()).orElseThrow();
         movieDbData.setTitle(movieData.getTitle());
@@ -77,11 +71,13 @@ public class MovieServiceImpl implements MovieService{
 
     @Override
     public void DeleteMovie(long id) {
+        logger.info("Delete movie with id:{}", id);
         movieRepository.deleteById(id);
     }
 
     @Override
     public long AttachCastToMovie(long id, List<Long> personnelIds) {
+        logger.info("Attach cast to movie with id:{}", id);
         var movieDB = movieRepository.findById(id).orElseThrow();
 
         for (var personnelId :

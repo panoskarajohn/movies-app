@@ -14,11 +14,12 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor
-public class PersonnelServiceImple implements PersonnelService{
+public class PersonnelServiceImple extends AbstractLogComponent implements PersonnelService{
     private final PersonnelRepository personnelRepository;
 
     @Override
     public Personnel GetPersonnel(long id) {
+        logger.info("Get movie with id: {}", id);
         var personnelData = personnelRepository
                 .findById(id)
                 .orElseThrow();
@@ -27,6 +28,7 @@ public class PersonnelServiceImple implements PersonnelService{
 
     @Override
     public void RegisterPersonnels(List<Personnel> personnels) {
+        logger.info("Register personnel...");
         var personnelData = new ArrayList<PersonnelData>();
         for (var personnel :
                 personnels) {
@@ -37,6 +39,7 @@ public class PersonnelServiceImple implements PersonnelService{
 
     @Override
     public long RegisterPersonnel(Personnel personnel) {
+        logger.info("Register single personnel");
         var personnelData = DomainToData.personnelToData(personnel);
         var savedPersonnel = personnelRepository.save(personnelData);
         return savedPersonnel.getId();
@@ -44,6 +47,8 @@ public class PersonnelServiceImple implements PersonnelService{
 
     @Override
     public long UpdatePersonnel(Personnel personnel) {
+        logger.info("Update single personnel with Id: {}", personnel.getId());
+
         var personnelData = DomainToData.personnelToData(personnel);
 
         var personnelInDB = personnelRepository
@@ -61,6 +66,7 @@ public class PersonnelServiceImple implements PersonnelService{
 
     @Override
     public void DeletePersonnel(long id) {
+        logger.info("Delete personnel with id:{}", id);
         personnelRepository.deleteById(id);
     }
 }
